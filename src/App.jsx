@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Fish,
-  Seawave, // Instead of Droplets
+  Waves,
   Anchor,
-  Wave, // Instead of Waves
   Plus,
   Lock,
   Trophy,
@@ -15,6 +14,7 @@ import {
   Clock,
   Zap,
   Database,
+  CircleDollarSign,
   Droplets
 } from 'lucide-react';
 import { Card, CardContent } from './components/ui/card';
@@ -99,7 +99,6 @@ const LoadingScreen = () => {
     </div>
   );
 };
-
 // Game Card Component
 const GameCard = ({ icon: Icon, title, description, status, marketCap, onClick, isComingSoon }) => (
   <Card className="bg-black/20 border-emerald-400/30 hover:border-emerald-400/60 transition-all duration-300 flex flex-col">
@@ -151,20 +150,17 @@ const GameCard = ({ icon: Icon, title, description, status, marketCap, onClick, 
 const BuildingCard = ({ icon: Icon, name, description, owned, rate, cost, onPurchase, canAfford }) => (
   <Card className="bg-black/20 border-emerald-400/30 hover:border-emerald-400/60 transition-all duration-300">
     <CardContent className="p-6 relative">
-      {/* Header row with icon and name - Added pt-4 for top padding */}
       <div className="flex items-center gap-3 mb-4 pt-4">
         <Icon className="w-6 h-6 text-emerald-400" />
         <h3 className="text-lg text-emerald-400 font-chakra tracking-wide">{name}</h3>
       </div>
       
-      {/* Building info with proper spacing */}
       <div className="space-y-2">
         <p className="text-emerald-400/70">Owned: {owned}</p>
         <p className="text-emerald-400/70">{description}</p>
         <p className="text-emerald-400">+{rate} $WAVE/s</p>
       </div>
 
-      {/* Cost button */}
       <button 
         onClick={onPurchase}
         disabled={!canAfford}
@@ -180,21 +176,19 @@ const BuildingCard = ({ icon: Icon, name, description, owned, rate, cost, onPurc
   </Card>
 );
 
-// Updated Mini Game Component (More Interesting)
+// Mini Game Component
 const MiniGame = ({ onClose, onScore }) => {
   const [position, setPosition] = useState({ x: 50, y: 85 });
   const [bullets, setBullets] = useState([]);
   const [enemies, setEnemies] = useState([]);
   const [score, setScore] = useState(0);
 
-  // Handle mouse movement for player
   const handleMove = (e) => {
     const bounds = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - bounds.left) / bounds.width) * 100;
     setPosition({ x, y: 85 });
   };
 
-  // Handle shooting
   const handleClick = () => {
     setBullets(prev => [...prev, {
       id: Date.now(),
@@ -204,7 +198,6 @@ const MiniGame = ({ onClose, onScore }) => {
     }]);
   };
 
-  // Move bullets and check collisions
   useEffect(() => {
     const interval = setInterval(() => {
       setBullets(prev => prev
@@ -234,9 +227,8 @@ const MiniGame = ({ onClose, onScore }) => {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [bullets]);
+  }, [bullets, onScore]);
 
-  // Spawn enemies
   useEffect(() => {
     const interval = setInterval(() => {
       if (enemies.length < 5) {
@@ -272,7 +264,6 @@ const MiniGame = ({ onClose, onScore }) => {
           onMouseMove={handleMove}
           onClick={handleClick}
         >
-          {/* Player */}
           <div 
             className="absolute bottom-0 transform -translate-x-1/2"
             style={{ left: `${position.x}%` }}
@@ -280,7 +271,6 @@ const MiniGame = ({ onClose, onScore }) => {
             <Fish className="text-emerald-400 w-8 h-8" />
           </div>
 
-          {/* Bullets */}
           {bullets.map(bullet => (
             <div
               key={bullet.id}
@@ -289,7 +279,6 @@ const MiniGame = ({ onClose, onScore }) => {
             />
           ))}
 
-          {/* Enemies */}
           {enemies.map(enemy => (
             <div
               key={enemy.id}
@@ -568,7 +557,7 @@ const App = () => {
           </div>
           <button 
             onClick={() => setShowModal(true)}
-            className="px-4 py-2 bg-emerald-400 text-black rounded-lg hover:bg-emerald-300 transition-all"
+            className="px-4 py-2 bg-emerald-400 text-black rounded-lg hover:bg-emerald-300 transition-all font-orbitron"
           >
             Convert to Token
           </button>
@@ -583,28 +572,28 @@ const App = () => {
         />
       )}
 
-{showModal && (
-  <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-    <div className="bg-blue-950 border border-emerald-400/30 rounded-lg max-w-md w-full p-8">
-      <h2 className="text-2xl text-emerald-400 mb-6 font-orbitron">Convert $WAVE to Tokens</h2>
-      
-      <p className="text-emerald-400/70 mb-8 leading-relaxed">
-        Token conversion will be available soon! You'll be able to convert your earned $WAVE to our official tokens at a rate to be announced.
-      </p>
-      
-      <div className="text-lg text-emerald-400 mb-8 font-orbitron">
-        Your Balance: {balance.toFixed(1)} $WAVE
-      </div>
+      {showModal && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+          <div className="bg-blue-950 border border-emerald-400/30 rounded-lg max-w-md w-full p-8">
+            <h2 className="text-2xl text-emerald-400 mb-6 font-orbitron">Convert $WAVE to Tokens</h2>
+            
+            <p className="text-emerald-400/70 mb-8 leading-relaxed">
+              Token conversion will be available soon! You'll be able to convert your earned $WAVE to our official tokens at a rate to be announced.
+            </p>
+            
+            <div className="text-lg text-emerald-400 mb-8 font-orbitron">
+              Your Balance: {balance.toFixed(1)} $WAVE
+            </div>
 
-      <button
-        onClick={() => setShowModal(false)}
-        className="w-full p-3 rounded-lg bg-emerald-400 text-black hover:bg-emerald-300 transition-all font-orbitron"
-      >
-        Close
-      </button>
-    </div>
-  </div>
-)}
+            <button
+              onClick={() => setShowModal(false)}
+              className="w-full p-3 rounded-lg bg-emerald-400 text-black hover:bg-emerald-300 transition-all font-orbitron"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
