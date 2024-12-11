@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Fish,
-  Shell,
+  Seawave, // Instead of Droplets
   Anchor,
-  Waves,
+  Wave, // Instead of Waves
   Plus,
   Lock,
   Trophy,
@@ -296,7 +296,7 @@ const MiniGame = ({ onClose, onScore }) => {
               className="absolute transform -translate-x-1/2"
               style={{ left: `${enemy.x}%`, top: `${enemy.y}%` }}
             >
-              <Shell className={`w-6 h-6 ${
+              <Droplets className={`w-6 h-6 ${
                 enemy.type === 'fast' ? 'text-red-400' : 'text-yellow-400'
               }`} />
             </div>
@@ -562,7 +562,7 @@ const App = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-emerald-900/50 backdrop-blur-sm p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Shell className="w-5 h-5 text-yellow-400" />
+            <Droplets className="w-5 h-5 text-yellow-400" />
             <span className="text-emerald-400 font-orbitron">Total Earnings</span>
             <span className="text-yellow-400 font-bold font-orbitron">{balance.toFixed(1)} $WAVE</span>
           </div>
