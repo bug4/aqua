@@ -430,7 +430,7 @@ const App = () => {
 
   const socialLinks = [
     {
-      href: "https://twitter.com/aquaverse",
+      href: "https://x.com/AquaVerseAI",
       icon: Twitter,
       label: "Twitter"
     },
