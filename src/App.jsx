@@ -435,7 +435,7 @@ const App = () => {
       label: "Twitter"
     },
     {
-      href: "https://pump.fun",
+      href: "https://pump.fun/coin/8esR5sgsKu1R8zrkp64iVmkGUyXm3KUi7rNQxAFApump",
       icon: ExternalLink,
       label: "pump.fun"
     }
