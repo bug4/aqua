@@ -72,7 +72,7 @@ const LoadingScreen = () => {
       <div className="w-full max-w-4xl p-8">
         <h1 className="text-4xl font-bold tracking-wider mb-8 text-center font-orbitron text-cyan-400">
           <span className="inline-block transform hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(6,182,212,0.7)]">
-            INITIALIZING NEURAMIND
+            INITIALIZING SATOVERSE
           </span>
         </h1>
         
@@ -169,7 +169,7 @@ const BuildingCard = ({ icon: Icon, name, description, owned, rate, cost, onPurc
       <div className="space-y-2">
         <p className="text-cyan-400/70">Owned: {owned}</p>
         <p className="text-cyan-400/70">{description}</p>
-        <p className="text-cyan-400">+{rate} $NURA/s</p>
+        <p className="text-cyan-400">+{rate} $SATO/s</p>
       </div>
 
       <button 
@@ -181,7 +181,7 @@ const BuildingCard = ({ icon: Icon, name, description, owned, rate, cost, onPurc
             : 'bg-gray-800/50 text-gray-600'
         }`}
       >
-        {cost} $NURA
+        {cost} $SATO
       </button>
     </CardContent>
   </Card>
@@ -348,7 +348,7 @@ const App = () => {
     {
       icon: Brain,
       title: 'Neural Lab',
-      description: 'Train your AI models and defend against data corruption. Earn $NURA tokens through successful training.',
+      description: 'Train your AI models and defend against data corruption. Earn $SATO tokens through successful training.',
       status: 'active'
     },
     {
@@ -441,7 +441,7 @@ const App = () => {
 
   const socialLinks = [
     {
-      href: "https://twitter.com/NeuraMindAI",
+      href: "https://x.com/SatoVerseAI",
       icon: Twitter,
       label: "Twitter"
     },
@@ -500,7 +500,7 @@ const App = () => {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-cyan-400 mb-4 animate-pulse-slow font-orbitron">
             <span className="inline-block transform hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(6,182,212,0.7)]">
-              NEURAMIND
+              SATOVERSE
             </span>
           </h1>
           <p className="text-cyan-400/70 text-lg">
@@ -564,7 +564,7 @@ const App = () => {
           <div className="flex items-center gap-2">
             <Brain className="w-5 h-5 text-fuchsia-400" />
             <span className="text-cyan-400 font-orbitron">Total Computing Power</span>
-            <span className="text-fuchsia-400 font-bold font-orbitron">{balance.toFixed(1)} $NURA</span>
+            <span className="text-fuchsia-400 font-bold font-orbitron">{balance.toFixed(1)} $SATO</span>
           </div>
           <button 
             onClick={() => setShowModal(true)}
@@ -586,14 +586,14 @@ const App = () => {
       {showModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
           <div className="bg-purple-950 border border-cyan-400/30 rounded-lg max-w-md w-full p-8">
-            <h2 className="text-2xl text-cyan-400 mb-6 font-orbitron">Convert $NURA to Tokens</h2>
+            <h2 className="text-2xl text-cyan-400 mb-6 font-orbitron">Convert $SATO to Tokens</h2>
             
             <p className="text-cyan-400/70 mb-8 leading-relaxed">
-              Token conversion will be available soon! You'll be able to convert your earned $NURA to our official tokens at a rate to be announced.
+              Token conversion will be available soon! You'll be able to convert your earned $SATO to our official tokens at a rate to be announced.
             </p>
             
             <div className="text-lg text-cyan-400 mb-8 font-orbitron">
-              Your Balance: {balance.toFixed(1)} $NURA
+              Your Balance: {balance.toFixed(1)} $SATO
             </div>
  
             <button
